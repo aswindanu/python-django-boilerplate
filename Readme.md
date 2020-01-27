@@ -8,5 +8,5 @@
 7. Migrate DB `python3 manage.py migrate`
 8. Run server `python3 manage.py runserver 0.0.0.0:<port>`
 
-## Folder "Porto" handle main parent setting for django
-## Folder "portofolio" is example of child for apps
+## Folder "porto" handle main parent setting for django
+## Folder "Portofolio" is example of child for apps
