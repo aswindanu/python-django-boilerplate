@@ -2,14 +2,21 @@
 {% load static %}
 
 {% block content %}
-    {% for homing in Homes %}
-        <div class="col-lg-4 col-md-6 col-sm-6">
-            <img src="{{ homing.images.url }}" class="margin-bottom" width="340px" height="240px">
-            <p class="bold-font">{{ homing.judul }}</p>
-            <p class="money-color">Rp {{ homing.harga }}</p>
-            <p>{{ homing.deskripsi }}</p>
+    <div class="container">
+        <div class="section-row">
+            <div class="row">
+            {% for port in Porto %}
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <img src="{{ port.images.url }}" class="margin-bottom" width="340px" height="240px">
+                    <p class="bold-font">{{ port.judul }}</p>
+                    <p class="money-color">Rp {{ port.harga }}</p>
+                    <p>{{ port.deskripsi }}</p>
+                    <a href="barang/{{ port.id }}">Lihat Details</a>
+                </div>
+            {% endfor %}
+            </div>
         </div>
-    {% endfor %}
+    </div>
 {% endblock %}
 
 {% block base %}
@@ -37,12 +44,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block form %}
-<h2>New Post</h2>
-<form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="Submit" class="save btn btn-default">Save</button>
-</form>
 {% endblock %}

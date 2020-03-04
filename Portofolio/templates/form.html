@@ -7,9 +7,6 @@
         <script src="{% static 'js/bootstrap.min.css' %}"></script>
     </head>
     {% include 'header.html' %}
-    <h2>New Post</h2>
-    <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="Submit" class="save btn btn-default">Save</button>
-    </form>
+    {% block form %}
+    {% endblock %}
 </html>

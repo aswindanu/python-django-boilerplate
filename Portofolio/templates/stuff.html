@@ -1,0 +1,10 @@
+{% extends "get.html" %}
+
+{% block stuff %}
+    <div class="col-lg-4 col-md-6 col-sm-6">
+        <img src="{{ Porto.images.url }}" class="margin-bottom" width="340px" height="240px">
+        <p class="bold-font">{{ Porto.judul }}</p>
+        <p class="money-color">Rp {{ Porto.harga }}</p>
+        <p>{{ Porto.deskripsi }}</p>
+    </div>
+{% endblock %}
