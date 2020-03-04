@@ -27,7 +27,7 @@ mysql-client==0.0.1
 packaging==20.0
 password-strength==0.0.3.post2
 pbr==5.4.4
-Pillow==5.4.1
+Pillow==6.2.0
 pluggy==0.13.1
 protobuf==3.11.2
 py==1.8.1
