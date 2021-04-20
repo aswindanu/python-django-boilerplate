@@ -30,7 +30,7 @@ pbr==5.4.4
 Pillow==5.4.1
 pluggy==0.13.1
 protobuf==3.11.2
-py==1.8.1
+py==1.10.0
 PyJWT==1.7.1
 pylint==2.4.4
 PyMySQL==0.9.3
