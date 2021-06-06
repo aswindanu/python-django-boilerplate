@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="section-row">
+            <div class="row">
+            {% for main in Main %}
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <img src="{{ port.images.url }}" class="margin-bottom" width="340px" height="240px">
+                    <p class="bold-font">{{ main.judul }}</p>
+                    <p class="money-color">Rp {{ main.harga }}</p>
+                    <p>{{ main.deskripsi }}</p>
+                    <a href="barang/{{ main.id }}">Lihat Details</a>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block base %}
+<div class="container">
+    <div class="section-row">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6 box-stuff">
+                <img src="{% static 'img/iphone.jpg' %}" class="margin-bottom" width="340px" height="240px">
+                <p class="bold-font">Iphone X</p>
+                <p class="money-color">Rp 15.000.000</p>
+                <a href="{% url 'form' %}">Lihat Details</a>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 box-stuff">
+                <img src="{% static 'img/sepatu.jpg' %}" class="margin-bottom" width="340px" height="240px">
+                <p class="bold-font">Sepatu Vans</p>
+                <p class="money-color">Rp 799.000</p>
+                <a href="{% url 'form' %}">Lihat Details</a>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 box-stuff">
+                <img src="{% static 'img/motor.jpg' %}" class="margin-bottom" width="340px" height="240px">
+                <p class="bold-font">Motor</p>
+                <p class="money-color">Rp 35.000.000</p>
+                <a href="{% url 'form' %}">Lihat Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block stuff %}
+    <div class="col-lg-4 col-md-6 col-sm-6">
+        <img src="{{ Main.images.url }}" class="margin-bottom" width="340px" height="240px">
+        <p class="bold-font">{{ Main.judul }}</p>
+        <p class="money-color">Rp {{ Main.harga }}</p>
+        <p>{{ Main.deskripsi }}</p>
+    </div>
+{% endblock %}
