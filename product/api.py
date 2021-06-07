@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import permissions
 from rest_framework import status
 from .models import Product
-from .serializers import UserSerializer, ProductSerializer
+from .serializers import UserSerializer, ProductSerializer, ProductSerializerAPIView
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -28,18 +28,49 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 
 
-# class ProductList(APIView):
-#     """
-#     List all products, or create a new product.
-#     """
-#     def get(self, request, format=None):
-#         products = Product.objects.all()
-#         serializer = ProductSerializer(products, many=True)
-#         return Response(serializer.data)
+class ProductList(APIView):
+    """
+    List all products, or create a new product.
+    """
+    permission_classes = [permissions.IsAuthenticated]
 
-#     def post(self, request, format=None):
-#         serializer = ProductSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get(self, request, format=None):
+        products = Product.objects.all()
+        serializer = ProductSerializerAPIView(products, many=True)
+
+        page = 1
+        per_page = 10
+
+        try:
+            page = request.GET.get["page"]
+        except:
+            pass
+
+        try:
+            per_page = request.GET["per_page"] if request.GET["per_page"] else 10
+        except:
+            pass
+
+        first_page = 1
+        total_count = products.count()
+        page_count = int(total_count / per_page) + 1 if total_count / per_page > int(total_count / per_page) else int(total_count / per_page)
+        last_page = page_count
+
+        context = {}
+        context["metadata"] = {}
+        context["metadata"]["page"] = page
+        context["metadata"]["per_page"] = per_page
+        context["metadata"]["first_page"] = first_page
+        context["metadata"]["last_page"] = last_page
+        context["metadata"]["page_count"] = page_count
+        context["metadata"]["total_count"] = total_count
+    
+        context["products"] = serializer.data
+        return Response(context)
+
+    def post(self, request, format=None):
+        serializer = ProductSerializerAPIView(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

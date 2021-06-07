@@ -1,17 +1,17 @@
 from django.urls import path, include
 from rest_framework import routers
 from .views import base, form, clear_cache, product_get
-from .api import UserViewSet, ProductViewSet
+from .api import UserViewSet, ProductViewSet, ProductList
 
 # API
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'products', ProductViewSet)
-# router.register(r'product_list', ProductList)
 
 urlpatterns = [
     # API
     path('api/v1/', include(router.urls)),
+    path('api/v1/product_list', ProductList.as_view()),
 
     # VIEW
     path ('', base, name='base'),
