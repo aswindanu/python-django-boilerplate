@@ -57,8 +57,8 @@ Directory tree from root project would be like this:
     ./requirements.txt
     ./app
     ./app/__init__.py
-    ./app/settings.py
-    ./app/urls.py           # main url
+    ./app/settings.py       # setting project
+    ./app/urls.py           # main url project
     ./app/wsgi.py
     ./main
     ./main/migrations       # Migration app
