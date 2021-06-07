@@ -47,7 +47,7 @@ class ProductList(APIView):
             pass
 
         try:
-            per_page = request.GET["per_page"] if request.GET["per_page"] else 10
+            per_page = request.GET["per_page"]
         except:
             pass
 
