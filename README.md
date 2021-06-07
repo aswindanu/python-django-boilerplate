@@ -7,6 +7,7 @@ python manage.py startapp `<app>`
 
 Migration :
 python manage.py makemigrations `<app>`
+
 python manage.py migrate
 
 Create superuser :
@@ -60,20 +61,20 @@ Directory tree from root project would be like this:
     ./app/settings.py       # setting project
     ./app/urls.py           # main url project
     ./app/wsgi.py
-    ./main
-    ./main/migrations       # Migration app
-    ./main/static           # Static dir app
-    ./main/templates        # Template view app
-    ./main/__init__.py
-    ./main/admin.py         # admin controller
-    ./main/api.py           # api controller
-    ./main/apps.py
-    ./main/forms.py         # model form app
-    ./main/models.py        # model app
-    ./main/serializers.py   # serializer api controller
-    ./main/tests.py
-    ./main/urls.py          # url app
-    ./main/views.py         # view controller
+    ./product
+    ./product/migrations       # Migration app
+    ./product/static           # Static dir app
+    ./product/templates        # Template view app
+    ./product/__init__.py
+    ./product/admin.py         # admin controller
+    ./product/api.py           # api controller
+    ./product/apps.py
+    ./product/forms.py         # model form app
+    ./product/models.py        # model app
+    ./product/serializers.py   # serializer api controller
+    ./product/tests.py
+    ./product/urls.py          # url app
+    ./product/views.py         # view controller
 
 #### NOTE:
 
