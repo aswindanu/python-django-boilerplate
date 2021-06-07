@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # App
-    path('', include('main.urls')),
+    path('', include('product.urls')),
 
     # REST Framework
     path('', include('rest_framework.urls', namespace='rest_framework')),

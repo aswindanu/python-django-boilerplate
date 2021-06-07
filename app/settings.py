@@ -8,9 +8,16 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
-"""
 
+For more information about django-environ, see
+https://django-environ.readthedocs.io/en/latest/
+"""
 import os
+import environ
+
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,7 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # App
-    'main',
+    'product',
 ]
 
 MIDDLEWARE = [
@@ -80,18 +87,21 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    # SQLITE3
     # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'django_app',
-    #     'USER': 'root',
-    #     'PASSWORD': '',
-    #     'HOST': '127.0.0.1',
-    #     'PORT': '3306',
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
+
+    # MYSQL
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASS'),
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
 }
 
 

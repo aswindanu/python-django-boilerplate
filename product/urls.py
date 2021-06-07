@@ -15,5 +15,5 @@ urlpatterns = [
     # VIEW
     path ('', base, name='base'),
     path ('add', form, name='form'),
-    path ('barang/<int:main_id>', main_get, name='main_id')
+    path ('product/<int:main_id>', main_get, name='main_id')
 ]

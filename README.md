@@ -32,10 +32,11 @@ For best use, please use virtualenv instead of global env (OPTIONAL)
 1. Clone django starter pack `git clone <git_url>`
 2. Go inside folder `cd <cloned_dir>`
 3. Install requirements `pip install -r requirements`
-4. Make migration database model (app) `python manage.py makemigrations <app>`
-5. Migrate database model `python manage.py migrate`
-6. Create superuser `python manage.py createsuperuser --email <email> --username <name>`
-7. Run server dev `python manage.py runserver 127.0.0.1:<port>`
+4. Create .env file into app/.env `touch app/.env`, then fill in your `DATABASE_NAME`, `DATABASE_USER` & `DATABASE_PASS` (see [docs](https://django-environ.readthedocs.io/en/latest/))
+5. Make migration database model (app) `python manage.py makemigrations <app>`
+6. Migrate database model `python manage.py migrate`
+7. Create superuser `python manage.py createsuperuser --email <email> --username <name>`
+8. Run server dev `python manage.py runserver 127.0.0.1:<port>`
 
 
 ### Folder "app" provide django settings

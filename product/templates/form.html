@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block form %}
-    <h2>New Post</h2>
+    <h2>New Product</h2>
     <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
         {{ form.as_p }}
         <button type="Submit" class="save btn btn-default">Save</button>

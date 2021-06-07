@@ -5,13 +5,14 @@
     <div class="container">
         <div class="section-row">
             <div class="row">
-            {% for main in Main %}
+            {% for product in Product %}
                 <div class="col-lg-4 col-md-6 col-sm-6">
-                    <img src="{{ port.images.url }}" class="margin-bottom" width="340px" height="240px">
-                    <p class="bold-font">{{ main.judul }}</p>
-                    <p class="money-color">Rp {{ main.harga }}</p>
-                    <p>{{ main.deskripsi }}</p>
-                    <a href="barang/{{ main.id }}">Lihat Details</a>
+                    <img src="{{ product.images.url }}" class="margin-bottom" width="340px" height="240px">
+                    <p class="bold-font">{{ product.product_name }}</p>
+                    <p class="money-color">Rp {{ product.price }}</p>
+                    <p class="money-color">Qty: Rp {{ product.quantity }}</p>
+                    <p>{{ product.description }}</p>
+                    <a href="barang/{{ product.product_id }}">See Details</a>
                 </div>
             {% endfor %}
             </div>
@@ -44,13 +45,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block stuff %}
-    <div class="col-lg-4 col-md-6 col-sm-6">
-        <img src="{{ Main.images.url }}" class="margin-bottom" width="340px" height="240px">
-        <p class="bold-font">{{ Main.judul }}</p>
-        <p class="money-color">Rp {{ Main.harga }}</p>
-        <p>{{ Main.deskripsi }}</p>
-    </div>
 {% endblock %}
