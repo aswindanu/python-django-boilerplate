@@ -7,6 +7,7 @@ from .api import UserViewSet, ProductViewSet
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'products', ProductViewSet)
+# router.register(r'product_list', ProductList)
 
 urlpatterns = [
     # API
