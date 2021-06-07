@@ -18,10 +18,16 @@ python manage.py runserver `<ip>`:`<port>`
 
 ## Prequisition
 What need to be installed
+    
     - pip
     - python
     - django
+    - redis (optional)
     - virtualenv (optional)
+
+
+For best use, please use cache redis (OPTIONAL)
+1. Download redis, [link](https://riptutorial.com/redis/example/29962/installing-and-running-redis-server-on-windows) (Win)
 
 For best use, please use virtualenv instead of global env (OPTIONAL)
 1. Make virtualenv `virtualenv <env>`
