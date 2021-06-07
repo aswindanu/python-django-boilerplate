@@ -17,5 +17,5 @@ urlpatterns = [
     path ('', base, name='base'),
     path ('clear', clear_cache, name='logout'),
     path ('add', form, name='form'),
-    path ('product/<int:product_id>', product_get, name='product_id')
+    path ('product/<int:product_id>', product_get, name='product_id')  # Need redis active
 ]
