@@ -11,6 +11,9 @@ class Product(models.Model):
     images = models.ImageField(upload_to="product/static/img")
     price = models.IntegerField(default=0)
     quantity = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True)
+    version = models.IntegerField(default=1)
 
     def __str__(self):
         return self.id
