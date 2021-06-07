@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import base, form, main_get
+from .views import base, form, clear_cache, product_get
 from .api import UserViewSet, GroupViewSet
 
 # API
@@ -14,6 +14,7 @@ urlpatterns = [
 
     # VIEW
     path ('', base, name='base'),
+    path ('clear', clear_cache, name='logout'),
     path ('add', form, name='form'),
-    path ('product/<int:main_id>', main_get, name='main_id')
+    path ('product/<int:product_id>', product_get, name='product_id')
 ]

@@ -11,6 +11,10 @@ footer {
     text-align: center;
 }
 
+p {
+    margin-top: revert;
+}
+
 .background-one {
     background-color: rgb(40, 153, 138);
     color: antiquewhite;

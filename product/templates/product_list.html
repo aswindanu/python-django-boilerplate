@@ -5,27 +5,30 @@
     <div class="container">
         <div class="section-row">
             <div class="row">
-                <div class="col-lg-12 col-md-6 col-sm-6 box-stuff">
-                    <img src="{{ Product.images.url }}" class="margin-bottom" width="100%">
+            {% for product in Product %}
+                <div class="col-lg-4 col-md-6 col-sm-6 box-stuff">
+                    <img src="{{ product.images.url }}" class="margin-bottom" width="340px" height="240px">
                     <table>
                         <tr>
                             <td>Name</td>
-                            <td class="bold-font">{{ Product.product_name }}</td>
+                            <td class="bold-font">{{ product.product_name }}</td>
                         </tr>
                         <tr>
                             <td>Price</td>
-                            <td class="money-color">Rp {{ Product.price }}</td>
+                            <td class="money-color">Rp {{ product.price }}</td>
                         </tr>
                         <tr>
                             <td>Quantity</td>
-                            <td>{{ Product.quantity }}</td>
+                            <td>{{ product.quantity }}</td>
                         </tr>
                         <tr>
                             <td>Description</td>
-                            <td>{{ Product.description }}</td>
+                            <td>{{ product.description }}</td>
                         </tr>
                     </table>
+                    <a href="/product/{{ product.product_id }}">See Details</a>
                 </div>
+            {% endfor %}
             </div>
         </div>
     </div>

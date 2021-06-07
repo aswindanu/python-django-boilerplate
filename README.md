@@ -73,3 +73,7 @@ Directory tree from root project would be like this:
 
 ## Others
 Update requirements if needed : `pip freeze > requirements.txt`
+
+Using Redis cache : this [link](https://realpython.com/caching-in-django-with-redis/)
+
+Using Memcached cache : this [link](https://docs.djangoproject.com/en/3.2/topics/cache/)
