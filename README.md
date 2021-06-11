@@ -39,7 +39,13 @@ For best use, please use virtualenv instead of global env (OPTIONAL)
 2. Go inside folder `cd <cloned_dir>`
 3. Install requirements `pip install -r requirements`
 4. Create .env file into app/.env `touch app/.env`
-5. Fill in your `DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASS`, `REDIS_KEY` in app/.env (see [docs](https://django-environ.readthedocs.io/en/latest/#installation))
+5. Fill in your env in app/.env (see [docs](https://django-environ.readthedocs.io/en/latest/#installation))
+- `SECRET_KEY` (Github ENV)
+- `DEBUG` (True)
+- `DATABASE_NAME`
+- `DATABASE_USER`
+- `DATABASE_PASS`
+- `REDIS_KEY`
 6. Make migration database model (app) `python manage.py makemigrations <app>`
 7. Migrate database model `python manage.py migrate`
 8. Create superuser `python manage.py createsuperuser --email <email> --username <name>`
