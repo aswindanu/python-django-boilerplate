@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="section-row">
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-6 box-stuff">
+                    <img src="{{ Product.images.url }}" class="margin-bottom" width="100%">
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td class="bold-font">{{ Product.product_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td class="money-color">Rp {{ Product.price }}</td>
+                        </tr>
+                        <tr>
+                            <td>Quantity</td>
+                            <td>{{ Product.quantity }}</td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>{{ Product.description }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
