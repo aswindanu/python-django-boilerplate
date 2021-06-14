@@ -92,4 +92,4 @@ Using Redis cache in Django: this [link](https://realpython.com/caching-in-djang
 
 Using Memcached cache in Django: this [link](https://docs.djangoproject.com/en/3.2/topics/cache/)
 
-Using 2FA / MFA in Djangi : using pyotp [link](https://github.com/pyauth/pyotp/tree/v2.6.0) and [example](https://www.section.io/engineering-education/implementing-totp-2fa-using-flask/)
+Using 2FA / MFA in Django : using pyotp, see this [link](https://github.com/pyauth/pyotp) and [example](https://www.section.io/engineering-education/implementing-totp-2fa-using-flask/)
