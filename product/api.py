@@ -1,18 +1,36 @@
-from rest_framework import viewsets
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import permissions, status, generics, authentication
-from account.models import User
-from .metadata import StandardResultsSetPagination, LargeResultsSetPagination
-from .models import Product
-from .serializers import UserSerializer, ProductSerializer, ProductSerializerAPIView, ProductSerializerGeneric
+from rest_framework import generics, mixins, permissions, status, authentication, viewsets
+from account.models import User, AbstractUser
+from product.metadata import StandardResultsSetPagination, LargeResultsSetPagination
+from product.models import Product
+from product.serializers import UserSerializer, ProductSerializer, ProductSerializerAPIView, ProductSerializerGeneric
 
 
-class ProductListView(generics.ListAPIView):
+class ProductListGeneric(generics.ListCreateAPIView):
     """
     List all products, or create a new product.
     Note : Recommended (best practice using generic API)
+
+    List of using generic:
+    - CreateAPIView: It provides a  post method handler and it is used for create-only endpoints. CreateAPIView extends GenericAPIView and CreateModelMixin
+    - ListAPIView: It provides a get method handler and is used for read-only endpoints to represent a collection of model instances. ListAPIView extends GenericAPIView and ListModelMixin.
+    - RetrieveAPIView: It provides a get method handler and is used for read-only endpoints to represent a single model instance. RetrieveAPIView extends GenericAPIView and RetrieveModelMixin.
+    - DestroyAPIView: It provides a delete method handler and is used for delete-only endpoints for a single model instance. DestroyAPIView extends GenericAPIView and DestroyModelMixin.
+    - UpdateAPIView: It provides put and patch method handlers and is used for update-only endpoints for a single model instance. UpdateAPIView extends GenericAPIView and UpdateModelMixin.
+
+    - ListCreateAPIView: It provides get and post method handlers and is used for read-write endpoints to represent a collection of model instances. ListCreateAPIView extends GenericAPIView, ListModelMixin, and CreateModelMixin..
+    - RetrieveUpdateAPIView: It provides get, put, and patch method handlers. It is used to read or update endpoints to represent a single model instance. RetrieveUpdateAPIView extends GenericAPIView, RetrieveModelMixin, and UpdateModelMixin.
+    - RetrieveDestroyAPIView: It provides get and delete method handlers and it is used for read or delete endpoints to represent a single model instance. RetrieveDestroyAPIView extends GenericAPIView, RetrieveModelMixin, and DestroyModelMixin.
+    - RetrieveUpdateDestroyAPIView: It provides get, put, patch, and delete method handlers. It is used for read-write-delete endpoints to represent a single model instance. It extends GenericAPIView, RetrieveModelMixin, UpdateModelMixin, and DestroyModelMixin.
+
+    see docs at
+    https://www.django-rest-framework.org/api-guide/generic-views/#concrete-view-classes
+
+    i.e.
+    https://medium.com/analytics-vidhya/django-rest-framework-views-generic-views-viewsets-simplified-ff997ea3205f
+    https://juliensalinas.com/en/django-rest-framework-generic-views/
     """
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
@@ -20,9 +38,118 @@ class ProductListView(generics.ListAPIView):
     pagination_class = LargeResultsSetPagination
     queryset = Product.objects.all()
 
-    def get_queryset(self):
-        qs = Product.objects.all()
-        return qs
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+  
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+class ProductDetailGeneric(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve, put, patch, or delete a product.
+    Note : Recommended (best practice using generic API)
+
+    List of using generic:
+    - CreateAPIView: It provides a  post method handler and it is used for create-only endpoints. CreateAPIView extends GenericAPIView and CreateModelMixin
+    - ListAPIView: It provides a get method handler and is used for read-only endpoints to represent a collection of model instances. ListAPIView extends GenericAPIView and ListModelMixin.
+    - RetrieveAPIView: It provides a get method handler and is used for read-only endpoints to represent a single model instance. RetrieveAPIView extends GenericAPIView and RetrieveModelMixin.
+    - DestroyAPIView: It provides a delete method handler and is used for delete-only endpoints for a single model instance. DestroyAPIView extends GenericAPIView and DestroyModelMixin.
+    - UpdateAPIView: It provides put and patch method handlers and is used for update-only endpoints for a single model instance. UpdateAPIView extends GenericAPIView and UpdateModelMixin.
+
+    - ListCreateAPIView: It provides get and post method handlers and is used for read-write endpoints to represent a collection of model instances. ListCreateAPIView extends GenericAPIView, ListModelMixin, and CreateModelMixin..
+    - RetrieveUpdateAPIView: It provides get, put, and patch method handlers. It is used to read or update endpoints to represent a single model instance. RetrieveUpdateAPIView extends GenericAPIView, RetrieveModelMixin, and UpdateModelMixin.
+    - RetrieveDestroyAPIView: It provides get and delete method handlers and it is used for read or delete endpoints to represent a single model instance. RetrieveDestroyAPIView extends GenericAPIView, RetrieveModelMixin, and DestroyModelMixin.
+    - RetrieveUpdateDestroyAPIView: It provides get, put, patch, and delete method handlers. It is used for read-write-delete endpoints to represent a single model instance. It extends GenericAPIView, RetrieveModelMixin, UpdateModelMixin, and DestroyModelMixin.
+
+    see docs at
+    https://www.django-rest-framework.org/api-guide/generic-views/#concrete-view-classes
+
+    i.e.
+    https://medium.com/analytics-vidhya/django-rest-framework-views-generic-views-viewsets-simplified-ff997ea3205f
+    https://juliensalinas.com/en/django-rest-framework-generic-views/
+    """
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ProductSerializerGeneric
+    pagination_class = LargeResultsSetPagination
+    queryset = Product.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+  
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+  
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+  
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
+class ProductListMixins(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    generics.GenericAPIView):
+    """
+    List all products or create a new product.
+
+    List of using mixins:
+    - ListModelMixin : list (GET /products/)- list some/all products
+    - CreateModelMixin : create(POST /products/) - add a new product
+
+    see docs at
+    https://www.django-rest-framework.org/api-guide/generic-views/#mixins
+
+    i.e.
+    https://www.geeksforgeeks.org/class-based-views-django-rest-framework/
+    """
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ProductSerializerGeneric
+    pagination_class = LargeResultsSetPagination
+    queryset = Product.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+  
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+class ProductDetailMixins(
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    generics.ListAPIView):
+    """
+    Retrieve, put, patch, or delete a product.
+
+    List of using mixins:
+    - RetrieveModelMixin : retrieve (GET /products/{pk}) - get a particular product
+    - UpdateModelMixin : 
+        a. update (PUT /products/{pk}) - update a particular product
+        b. partial_update(PATCH /products/{pk}) - update (without validating all fields) a particular product
+    - DestroyModelMixin : destroy (DELETE /products/{pk}) - delete a particular product
+    """
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ProductSerializerGeneric
+    pagination_class = LargeResultsSetPagination
+    queryset = Product.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+  
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+  
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+  
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -47,9 +174,10 @@ class ProductViewSet(viewsets.ModelViewSet):
     pagination_class = LargeResultsSetPagination
 
 
-class ProductList(APIView):
+class ProductAPIView(APIView):
     """
     List all products, or create a new product.
+    Note : Better to use generic instead of APIView
     """
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
@@ -97,7 +225,15 @@ class ProductList(APIView):
 
     def put(self, request, pk, format=None):
         product = Product.objects.get(pk=pk)
-        serializer = ProductSerializerAPIView(todo, data=request.data)
+        serializer = ProductSerializerAPIView(product, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, pk, format=None):
+        product = Product.objects.get(pk=pk)
+        serializer = ProductSerializerAPIView(product, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

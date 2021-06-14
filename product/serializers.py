@@ -1,7 +1,7 @@
 # from django.contrib.auth.models import User
 from rest_framework import serializers
 from account.models import User
-from .models import Product
+from product.models import Product
 
 
 class ProductSerializerGeneric(serializers.ModelSerializer):

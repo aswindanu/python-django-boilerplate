@@ -87,7 +87,7 @@ Directory tree from root project would be like this:
 - Folder "app" provide django settings
 - Folder "product" is sample of django app
 - For sample endpoint `127.0.0.1:<port>/product/<id>`, redis should be activated
-- For Django Rest Framework, best practice is using Generic API View (i.e. in "product" app), see [details](https://www.django-rest-framework.org/api-guide/generic-views/)
+- For Django Rest Framework, best practice is using Generic API View (i.e. in "product" app), see [details](https://www.django-rest-framework.org/api-guide/generic-views/) and [example1](https://medium.com/analytics-vidhya/django-rest-framework-views-generic-views-viewsets-simplified-ff997ea3205f) or [example2](https://juliensalinas.com/en/django-rest-framework-generic-views/)
 - Demo customizing Django default User has been modified from "account" app, see [details](https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project)
 - Demo token authentication Django default has been implemented from `urls.py` in "account" app, see [details](https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication)
 
