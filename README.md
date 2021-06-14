@@ -97,3 +97,5 @@ Update requirements if needed : `pip freeze > requirements.txt`
 Using Redis cache in Django: this [link](https://realpython.com/caching-in-django-with-redis/)
 
 Using Memcached cache in Django: this [link](https://docs.djangoproject.com/en/3.2/topics/cache/)
+
+Using 2FA / MFA in Django : using pyotp, see this [link](https://github.com/pyauth/pyotp) and [example](https://www.section.io/engineering-education/implementing-totp-2fa-using-flask/)
