@@ -4,6 +4,7 @@ from product.views import base, form, clear_cache, product_get
 from product.api import (
     ProductListGeneric,
     ProductDetailGeneric,
+    UserListGeneric,
     ProductListMixins,
     ProductDetailMixins,
     UserViewSet,
@@ -22,6 +23,8 @@ urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('api/v1/generic/products', ProductListGeneric.as_view()), # Recommended
     path('api/v1/generic/products/<int:pk>', ProductDetailGeneric.as_view()), # Recommended
+    
+    path('api/v1/generic/user', UserListGeneric.as_view()), # Recommended
 
     path('api/v1/mixins/products', ProductListMixins.as_view()),
     path('api/v1/mixins/products/<int:pk>', ProductDetailMixins.as_view()),
