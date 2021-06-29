@@ -10,6 +10,28 @@ class ProductSerializerGeneric(serializers.ModelSerializer):
         fields = ["id", "name", "description", "images", "price", "quantity"]
 
 
+class UserSerializerGeneric(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email', 'groups']
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = User(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'],
+            address=validated_data['address'],
+            city=validated_data['city'],
+            province=validated_data['province'],
+            country=validated_data['country'],
+        )
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
