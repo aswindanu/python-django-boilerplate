@@ -31,6 +31,7 @@ class ProductListGeneric(generics.ListCreateAPIView):
     i.e.
     https://medium.com/analytics-vidhya/django-rest-framework-views-generic-views-viewsets-simplified-ff997ea3205f
     https://juliensalinas.com/en/django-rest-framework-generic-views/
+    https://www.valentinog.com/blog/drf-request/
     """
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
@@ -42,6 +43,12 @@ class ProductListGeneric(generics.ListCreateAPIView):
         return self.list(request, *args, **kwargs)
   
     def post(self, request, *args, **kwargs):
+        for key, val in request.data.items():
+            _exception_title = ["username", "password", "email"]
+            if key not in _exception_title:
+                request.data[key] = val.strip().title()
+            else:
+                request.data[key] = val.strip()
         return self.create(request, *args, **kwargs)
 
 
@@ -68,6 +75,7 @@ class ProductDetailGeneric(generics.RetrieveUpdateDestroyAPIView):
     i.e.
     https://medium.com/analytics-vidhya/django-rest-framework-views-generic-views-viewsets-simplified-ff997ea3205f
     https://juliensalinas.com/en/django-rest-framework-generic-views/
+    https://www.valentinog.com/blog/drf-request/
     """
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
