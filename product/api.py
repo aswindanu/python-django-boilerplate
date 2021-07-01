@@ -43,7 +43,14 @@ class ProductListGeneric(generics.ListCreateAPIView):
         return self.list(request, *args, **kwargs)
   
     def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+        if isinstance(request.data, list):  # <- insert bulk data filter
+            serializer = self.get_serializer(data=request.data, many=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:. # <- insert single data
+            return self.create(request, *args, **kwargs)
 
 
 class ProductDetailGeneric(generics.RetrieveUpdateDestroyAPIView):
