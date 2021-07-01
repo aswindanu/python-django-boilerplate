@@ -15,6 +15,9 @@ python manage.py createsuperuser --email `<email>` --username `<name>`
 Serve dev:
 python manage.py runserver `<ip>`:`<port>`
 
+Generate Openapi (i.e. swagger html in `<app>/templates/swagger-ui.html`):
+python manage.py generateschema --file `<app>/static/openapi-schema.yml`
+
 
 ## Prequisition
 What need to be installed
@@ -93,6 +96,8 @@ Directory tree from root project would be like this:
 
 ## Others
 Update requirements if needed : `pip freeze > requirements.txt`
+
+Using swagger ui : this [link](https://www.django-rest-framework.org/api-guide/schemas/)
 
 Using Redis cache in Django: this [link](https://realpython.com/caching-in-django-with-redis/)
 
