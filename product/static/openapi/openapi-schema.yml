@@ -1,0 +1,1458 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/v1/users/:
+    get:
+      operationId: listUsers
+      description: API endpoint that allows users to be viewed or edited.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createUser
+      description: API endpoint that allows users to be viewed or edited.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - api
+  /api/v1/users/{id}/:
+    get:
+      operationId: retrieveUser
+      description: API endpoint that allows users to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateUser
+      description: API endpoint that allows users to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateUser
+      description: API endpoint that allows users to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyUser
+      description: API endpoint that allows users to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/products/:
+    get:
+      operationId: listProducts
+      description: API endpoint that allows product to be viewed or edited.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createProduct
+      description: API endpoint that allows product to be viewed or edited.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Product'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+      tags:
+      - api
+  /api/v1/products/{id}/:
+    get:
+      operationId: retrieveProduct
+      description: API endpoint that allows product to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateProduct
+      description: API endpoint that allows product to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Product'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateProduct
+      description: API endpoint that allows product to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Product'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyProduct
+      description: API endpoint that allows product to be viewed or edited.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/generic/products:
+    get:
+      operationId: listProducts
+      description: 'List all products, or create a new product.
+
+        Note : Recommended (best practice using generic API)
+
+
+        List of using generic:
+
+        - CreateAPIView: It provides a  post method handler and it is used for create-only
+        endpoints. CreateAPIView extends GenericAPIView and CreateModelMixin
+
+        - ListAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a collection of model instances. ListAPIView extends
+        GenericAPIView and ListModelMixin.
+
+        - RetrieveAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a single model instance. RetrieveAPIView extends GenericAPIView
+        and RetrieveModelMixin.
+
+        - DestroyAPIView: It provides a delete method handler and is used for delete-only
+        endpoints for a single model instance. DestroyAPIView extends GenericAPIView
+        and DestroyModelMixin.
+
+        - UpdateAPIView: It provides put and patch method handlers and is used for
+        update-only endpoints for a single model instance. UpdateAPIView extends GenericAPIView
+        and UpdateModelMixin.
+
+
+        - ListCreateAPIView: It provides get and post method handlers and is used
+        for read-write endpoints to represent a collection of model instances. ListCreateAPIView
+        extends GenericAPIView, ListModelMixin, and CreateModelMixin..
+
+        - RetrieveUpdateAPIView: It provides get, put, and patch method handlers.
+        It is used to read or update endpoints to represent a single model instance.
+        RetrieveUpdateAPIView extends GenericAPIView, RetrieveModelMixin, and UpdateModelMixin.
+
+        - RetrieveDestroyAPIView: It provides get and delete method handlers and it
+        is used for read or delete endpoints to represent a single model instance.
+        RetrieveDestroyAPIView extends GenericAPIView, RetrieveModelMixin, and DestroyModelMixin.
+
+        - RetrieveUpdateDestroyAPIView: It provides get, put, patch, and delete method
+        handlers. It is used for read-write-delete endpoints to represent a single
+        model instance. It extends GenericAPIView, RetrieveModelMixin, UpdateModelMixin,
+        and DestroyModelMixin.
+
+
+        see docs at'
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createProduct
+      description: 'List all products, or create a new product.
+
+        Note : Recommended (best practice using generic API)
+
+
+        List of using generic:
+
+        - CreateAPIView: It provides a  post method handler and it is used for create-only
+        endpoints. CreateAPIView extends GenericAPIView and CreateModelMixin
+
+        - ListAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a collection of model instances. ListAPIView extends
+        GenericAPIView and ListModelMixin.
+
+        - RetrieveAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a single model instance. RetrieveAPIView extends GenericAPIView
+        and RetrieveModelMixin.
+
+        - DestroyAPIView: It provides a delete method handler and is used for delete-only
+        endpoints for a single model instance. DestroyAPIView extends GenericAPIView
+        and DestroyModelMixin.
+
+        - UpdateAPIView: It provides put and patch method handlers and is used for
+        update-only endpoints for a single model instance. UpdateAPIView extends GenericAPIView
+        and UpdateModelMixin.
+
+
+        - ListCreateAPIView: It provides get and post method handlers and is used
+        for read-write endpoints to represent a collection of model instances. ListCreateAPIView
+        extends GenericAPIView, ListModelMixin, and CreateModelMixin..
+
+        - RetrieveUpdateAPIView: It provides get, put, and patch method handlers.
+        It is used to read or update endpoints to represent a single model instance.
+        RetrieveUpdateAPIView extends GenericAPIView, RetrieveModelMixin, and UpdateModelMixin.
+
+        - RetrieveDestroyAPIView: It provides get and delete method handlers and it
+        is used for read or delete endpoints to represent a single model instance.
+        RetrieveDestroyAPIView extends GenericAPIView, RetrieveModelMixin, and DestroyModelMixin.
+
+        - RetrieveUpdateDestroyAPIView: It provides get, put, patch, and delete method
+        handlers. It is used for read-write-delete endpoints to represent a single
+        model instance. It extends GenericAPIView, RetrieveModelMixin, UpdateModelMixin,
+        and DestroyModelMixin.
+
+
+        see docs at'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+  /api/v1/generic/products/{id}:
+    get:
+      operationId: retrieveProduct
+      description: 'Retrieve, put, patch, or delete a product.
+
+        Note : Recommended (best practice using generic API)
+
+
+        List of using generic:
+
+        - CreateAPIView: It provides a  post method handler and it is used for create-only
+        endpoints. CreateAPIView extends GenericAPIView and CreateModelMixin
+
+        - ListAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a collection of model instances. ListAPIView extends
+        GenericAPIView and ListModelMixin.
+
+        - RetrieveAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a single model instance. RetrieveAPIView extends GenericAPIView
+        and RetrieveModelMixin.
+
+        - DestroyAPIView: It provides a delete method handler and is used for delete-only
+        endpoints for a single model instance. DestroyAPIView extends GenericAPIView
+        and DestroyModelMixin.
+
+        - UpdateAPIView: It provides put and patch method handlers and is used for
+        update-only endpoints for a single model instance. UpdateAPIView extends GenericAPIView
+        and UpdateModelMixin.
+
+
+        - ListCreateAPIView: It provides get and post method handlers and is used
+        for read-write endpoints to represent a collection of model instances. ListCreateAPIView
+        extends GenericAPIView, ListModelMixin, and CreateModelMixin..
+
+        - RetrieveUpdateAPIView: It provides get, put, and patch method handlers.
+        It is used to read or update endpoints to represent a single model instance.
+        RetrieveUpdateAPIView extends GenericAPIView, RetrieveModelMixin, and UpdateModelMixin.
+
+        - RetrieveDestroyAPIView: It provides get and delete method handlers and it
+        is used for read or delete endpoints to represent a single model instance.
+        RetrieveDestroyAPIView extends GenericAPIView, RetrieveModelMixin, and DestroyModelMixin.
+
+        - RetrieveUpdateDestroyAPIView: It provides get, put, patch, and delete method
+        handlers. It is used for read-write-delete endpoints to represent a single
+        model instance. It extends GenericAPIView, RetrieveModelMixin, UpdateModelMixin,
+        and DestroyModelMixin.
+
+
+        see docs at'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateProduct
+      description: 'Retrieve, put, patch, or delete a product.
+
+        Note : Recommended (best practice using generic API)
+
+
+        List of using generic:
+
+        - CreateAPIView: It provides a  post method handler and it is used for create-only
+        endpoints. CreateAPIView extends GenericAPIView and CreateModelMixin
+
+        - ListAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a collection of model instances. ListAPIView extends
+        GenericAPIView and ListModelMixin.
+
+        - RetrieveAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a single model instance. RetrieveAPIView extends GenericAPIView
+        and RetrieveModelMixin.
+
+        - DestroyAPIView: It provides a delete method handler and is used for delete-only
+        endpoints for a single model instance. DestroyAPIView extends GenericAPIView
+        and DestroyModelMixin.
+
+        - UpdateAPIView: It provides put and patch method handlers and is used for
+        update-only endpoints for a single model instance. UpdateAPIView extends GenericAPIView
+        and UpdateModelMixin.
+
+
+        - ListCreateAPIView: It provides get and post method handlers and is used
+        for read-write endpoints to represent a collection of model instances. ListCreateAPIView
+        extends GenericAPIView, ListModelMixin, and CreateModelMixin..
+
+        - RetrieveUpdateAPIView: It provides get, put, and patch method handlers.
+        It is used to read or update endpoints to represent a single model instance.
+        RetrieveUpdateAPIView extends GenericAPIView, RetrieveModelMixin, and UpdateModelMixin.
+
+        - RetrieveDestroyAPIView: It provides get and delete method handlers and it
+        is used for read or delete endpoints to represent a single model instance.
+        RetrieveDestroyAPIView extends GenericAPIView, RetrieveModelMixin, and DestroyModelMixin.
+
+        - RetrieveUpdateDestroyAPIView: It provides get, put, patch, and delete method
+        handlers. It is used for read-write-delete endpoints to represent a single
+        model instance. It extends GenericAPIView, RetrieveModelMixin, UpdateModelMixin,
+        and DestroyModelMixin.
+
+
+        see docs at'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateProduct
+      description: 'Retrieve, put, patch, or delete a product.
+
+        Note : Recommended (best practice using generic API)
+
+
+        List of using generic:
+
+        - CreateAPIView: It provides a  post method handler and it is used for create-only
+        endpoints. CreateAPIView extends GenericAPIView and CreateModelMixin
+
+        - ListAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a collection of model instances. ListAPIView extends
+        GenericAPIView and ListModelMixin.
+
+        - RetrieveAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a single model instance. RetrieveAPIView extends GenericAPIView
+        and RetrieveModelMixin.
+
+        - DestroyAPIView: It provides a delete method handler and is used for delete-only
+        endpoints for a single model instance. DestroyAPIView extends GenericAPIView
+        and DestroyModelMixin.
+
+        - UpdateAPIView: It provides put and patch method handlers and is used for
+        update-only endpoints for a single model instance. UpdateAPIView extends GenericAPIView
+        and UpdateModelMixin.
+
+
+        - ListCreateAPIView: It provides get and post method handlers and is used
+        for read-write endpoints to represent a collection of model instances. ListCreateAPIView
+        extends GenericAPIView, ListModelMixin, and CreateModelMixin..
+
+        - RetrieveUpdateAPIView: It provides get, put, and patch method handlers.
+        It is used to read or update endpoints to represent a single model instance.
+        RetrieveUpdateAPIView extends GenericAPIView, RetrieveModelMixin, and UpdateModelMixin.
+
+        - RetrieveDestroyAPIView: It provides get and delete method handlers and it
+        is used for read or delete endpoints to represent a single model instance.
+        RetrieveDestroyAPIView extends GenericAPIView, RetrieveModelMixin, and DestroyModelMixin.
+
+        - RetrieveUpdateDestroyAPIView: It provides get, put, patch, and delete method
+        handlers. It is used for read-write-delete endpoints to represent a single
+        model instance. It extends GenericAPIView, RetrieveModelMixin, UpdateModelMixin,
+        and DestroyModelMixin.
+
+
+        see docs at'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyProduct
+      description: 'Retrieve, put, patch, or delete a product.
+
+        Note : Recommended (best practice using generic API)
+
+
+        List of using generic:
+
+        - CreateAPIView: It provides a  post method handler and it is used for create-only
+        endpoints. CreateAPIView extends GenericAPIView and CreateModelMixin
+
+        - ListAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a collection of model instances. ListAPIView extends
+        GenericAPIView and ListModelMixin.
+
+        - RetrieveAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a single model instance. RetrieveAPIView extends GenericAPIView
+        and RetrieveModelMixin.
+
+        - DestroyAPIView: It provides a delete method handler and is used for delete-only
+        endpoints for a single model instance. DestroyAPIView extends GenericAPIView
+        and DestroyModelMixin.
+
+        - UpdateAPIView: It provides put and patch method handlers and is used for
+        update-only endpoints for a single model instance. UpdateAPIView extends GenericAPIView
+        and UpdateModelMixin.
+
+
+        - ListCreateAPIView: It provides get and post method handlers and is used
+        for read-write endpoints to represent a collection of model instances. ListCreateAPIView
+        extends GenericAPIView, ListModelMixin, and CreateModelMixin..
+
+        - RetrieveUpdateAPIView: It provides get, put, and patch method handlers.
+        It is used to read or update endpoints to represent a single model instance.
+        RetrieveUpdateAPIView extends GenericAPIView, RetrieveModelMixin, and UpdateModelMixin.
+
+        - RetrieveDestroyAPIView: It provides get and delete method handlers and it
+        is used for read or delete endpoints to represent a single model instance.
+        RetrieveDestroyAPIView extends GenericAPIView, RetrieveModelMixin, and DestroyModelMixin.
+
+        - RetrieveUpdateDestroyAPIView: It provides get, put, patch, and delete method
+        handlers. It is used for read-write-delete endpoints to represent a single
+        model instance. It extends GenericAPIView, RetrieveModelMixin, UpdateModelMixin,
+        and DestroyModelMixin.
+
+
+        see docs at'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/generic/user:
+    get:
+      operationId: listProducts
+      description: 'List all users, or create a new user.
+
+        Note : Recommended (best practice using generic API)
+
+
+        List of using generic:
+
+        - CreateAPIView: It provides a  post method handler and it is used for create-only
+        endpoints. CreateAPIView extends GenericAPIView and CreateModelMixin
+
+        - ListAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a collection of model instances. ListAPIView extends
+        GenericAPIView and ListModelMixin.
+
+        - RetrieveAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a single model instance. RetrieveAPIView extends GenericAPIView
+        and RetrieveModelMixin.
+
+        - DestroyAPIView: It provides a delete method handler and is used for delete-only
+        endpoints for a single model instance. DestroyAPIView extends GenericAPIView
+        and DestroyModelMixin.
+
+        - UpdateAPIView: It provides put and patch method handlers and is used for
+        update-only endpoints for a single model instance. UpdateAPIView extends GenericAPIView
+        and UpdateModelMixin.
+
+
+        - ListCreateAPIView: It provides get and post method handlers and is used
+        for read-write endpoints to represent a collection of model instances. ListCreateAPIView
+        extends GenericAPIView, ListModelMixin, and CreateModelMixin..
+
+        - RetrieveUpdateAPIView: It provides get, put, and patch method handlers.
+        It is used to read or update endpoints to represent a single model instance.
+        RetrieveUpdateAPIView extends GenericAPIView, RetrieveModelMixin, and UpdateModelMixin.
+
+        - RetrieveDestroyAPIView: It provides get and delete method handlers and it
+        is used for read or delete endpoints to represent a single model instance.
+        RetrieveDestroyAPIView extends GenericAPIView, RetrieveModelMixin, and DestroyModelMixin.
+
+        - RetrieveUpdateDestroyAPIView: It provides get, put, patch, and delete method
+        handlers. It is used for read-write-delete endpoints to represent a single
+        model instance. It extends GenericAPIView, RetrieveModelMixin, UpdateModelMixin,
+        and DestroyModelMixin.
+
+
+        see docs at'
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createProduct
+      description: 'List all users, or create a new user.
+
+        Note : Recommended (best practice using generic API)
+
+
+        List of using generic:
+
+        - CreateAPIView: It provides a  post method handler and it is used for create-only
+        endpoints. CreateAPIView extends GenericAPIView and CreateModelMixin
+
+        - ListAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a collection of model instances. ListAPIView extends
+        GenericAPIView and ListModelMixin.
+
+        - RetrieveAPIView: It provides a get method handler and is used for read-only
+        endpoints to represent a single model instance. RetrieveAPIView extends GenericAPIView
+        and RetrieveModelMixin.
+
+        - DestroyAPIView: It provides a delete method handler and is used for delete-only
+        endpoints for a single model instance. DestroyAPIView extends GenericAPIView
+        and DestroyModelMixin.
+
+        - UpdateAPIView: It provides put and patch method handlers and is used for
+        update-only endpoints for a single model instance. UpdateAPIView extends GenericAPIView
+        and UpdateModelMixin.
+
+
+        - ListCreateAPIView: It provides get and post method handlers and is used
+        for read-write endpoints to represent a collection of model instances. ListCreateAPIView
+        extends GenericAPIView, ListModelMixin, and CreateModelMixin..
+
+        - RetrieveUpdateAPIView: It provides get, put, and patch method handlers.
+        It is used to read or update endpoints to represent a single model instance.
+        RetrieveUpdateAPIView extends GenericAPIView, RetrieveModelMixin, and UpdateModelMixin.
+
+        - RetrieveDestroyAPIView: It provides get and delete method handlers and it
+        is used for read or delete endpoints to represent a single model instance.
+        RetrieveDestroyAPIView extends GenericAPIView, RetrieveModelMixin, and DestroyModelMixin.
+
+        - RetrieveUpdateDestroyAPIView: It provides get, put, patch, and delete method
+        handlers. It is used for read-write-delete endpoints to represent a single
+        model instance. It extends GenericAPIView, RetrieveModelMixin, UpdateModelMixin,
+        and DestroyModelMixin.
+
+
+        see docs at'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+  /api/v1/mixins/products:
+    get:
+      operationId: listProducts
+      description: 'List all products or create a new product.
+
+
+        List of using mixins:
+
+        - ListModelMixin : list (GET /products/)- list some/all products
+
+        - CreateModelMixin : create(POST /products/) - add a new product
+
+
+        see docs at'
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createProduct
+      description: 'List all products or create a new product.
+
+
+        List of using mixins:
+
+        - ListModelMixin : list (GET /products/)- list some/all products
+
+        - CreateModelMixin : create(POST /products/) - add a new product
+
+
+        see docs at'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+  /api/v1/mixins/products/{id}:
+    get:
+      operationId: retrieveProduct
+      description: "Retrieve, put, patch, or delete a product.\n\nList of using mixins:\n\
+        - RetrieveModelMixin : retrieve (GET /products/{pk}) - get a particular product\n\
+        - UpdateModelMixin : \n    a. update (PUT /products/{pk}) - update a particular\
+        \ product\n    b. partial_update(PATCH /products/{pk}) - update (without validating\
+        \ all fields) a particular product\n- DestroyModelMixin : destroy (DELETE\
+        \ /products/{pk}) - delete a particular product"
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateProduct
+      description: "Retrieve, put, patch, or delete a product.\n\nList of using mixins:\n\
+        - RetrieveModelMixin : retrieve (GET /products/{pk}) - get a particular product\n\
+        - UpdateModelMixin : \n    a. update (PUT /products/{pk}) - update a particular\
+        \ product\n    b. partial_update(PATCH /products/{pk}) - update (without validating\
+        \ all fields) a particular product\n- DestroyModelMixin : destroy (DELETE\
+        \ /products/{pk}) - delete a particular product"
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateProduct
+      description: "Retrieve, put, patch, or delete a product.\n\nList of using mixins:\n\
+        - RetrieveModelMixin : retrieve (GET /products/{pk}) - get a particular product\n\
+        - UpdateModelMixin : \n    a. update (PUT /products/{pk}) - update a particular\
+        \ product\n    b. partial_update(PATCH /products/{pk}) - update (without validating\
+        \ all fields) a particular product\n- DestroyModelMixin : destroy (DELETE\
+        \ /products/{pk}) - delete a particular product"
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductGeneric'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGeneric'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyProduct
+      description: "Retrieve, put, patch, or delete a product.\n\nList of using mixins:\n\
+        - RetrieveModelMixin : retrieve (GET /products/{pk}) - get a particular product\n\
+        - UpdateModelMixin : \n    a. update (PUT /products/{pk}) - update a particular\
+        \ product\n    b. partial_update(PATCH /products/{pk}) - update (without validating\
+        \ all fields) a particular product\n- DestroyModelMixin : destroy (DELETE\
+        \ /products/{pk}) - delete a particular product"
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this product.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/apiview/products:
+    get:
+      operationId: listProducts
+      description: 'List all products, or create a new product.
+
+        Note : Better to use generic instead of APIView'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createProduct
+      description: 'List all products, or create a new product.
+
+        Note : Better to use generic instead of APIView'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateProduct
+      description: 'List all products, or create a new product.
+
+        Note : Better to use generic instead of APIView'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateProduct
+      description: 'List all products, or create a new product.
+
+        Note : Better to use generic instead of APIView'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyProduct
+      description: 'List all products, or create a new product.
+
+        Note : Better to use generic instead of APIView'
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/apiview/products/{id}:
+    get:
+      operationId: retrieveProduct
+      description: 'List all products, or create a new product.
+
+        Note : Better to use generic instead of APIView'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createProduct
+      description: 'List all products, or create a new product.
+
+        Note : Better to use generic instead of APIView'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateProduct
+      description: 'List all products, or create a new product.
+
+        Note : Better to use generic instead of APIView'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateProduct
+      description: 'List all products, or create a new product.
+
+        Note : Better to use generic instead of APIView'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyProduct
+      description: 'List all products, or create a new product.
+
+        Note : Better to use generic instead of APIView'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/api-token-auth/:
+    post:
+      operationId: createAuthToken
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        url:
+          type: string
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+\z
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        groups:
+          type: array
+          items:
+            type: string
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+      required:
+      - username
+    Product:
+      type: object
+      properties:
+        url:
+          type: string
+          readOnly: true
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        price:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        description:
+          type: string
+          maxLength: 400
+      required:
+      - name
+    ProductGeneric:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+          maxLength: 400
+        images:
+          type: string
+          format: binary
+        price:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+      required:
+      - name
+      - images
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+      - username
+      - password
