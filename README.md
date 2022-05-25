@@ -1,4 +1,4 @@
-# Starter python for Django Framework + REST framework API
+# Starter python for Django + REST framework API
 
 this project using this kind of library:
 * API : https://www.django-rest-framework.org/
