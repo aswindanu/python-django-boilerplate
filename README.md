@@ -1,8 +1,8 @@
-# Starter python for REST API
+# Starter python for Django Framework + REST framework API
 
 this project using this kind of library:
-* API Framework : https://www.fullstackpython.com/flask.html
-* ORM : https://flask-sqlalchemy.palletsprojects.com/en/2.x/
+* API : https://www.django-rest-framework.org/
+* Framework & ORM : https://www.djangoproject.com/
 * Configs : https://pypi.org/project/python-dotenv/
 * Unit Test : https://docs.pytest.org/en/latest/
 * Logging : https://docs.python.org/2/library/logging.html
